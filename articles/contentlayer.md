@@ -3,7 +3,7 @@ title: 'Contentlayer で記事を markdown 管理してみる'
 emoji: '🐶'
 type: 'tech'
 topics: ['contentlayer', 'nextjs', 'typescript']
-published: false
+published: true
 ---
 
 # はじめに
@@ -239,3 +239,8 @@ export const MdxBody = ({ code }: { code: string }) => {
 ```
 
 注意点として、`useMDXComponent` は内部で `useMemo` を使う React の hook なので、クライアントコンポーネントである必要があります。
+
+# まとめ
+
+ブログを作るだけならこれでほぼ完了で、後はシンタックスハイライトですね、、
+Contentlayer のやってみた記事なので紹介しませんが、`rehype-prism-plus` によってコードブロックに必要なクラスは付与されているので、後は prism でハイライトすれば良いかと思います！
