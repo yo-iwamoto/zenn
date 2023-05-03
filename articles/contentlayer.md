@@ -1,5 +1,5 @@
 ---
-title: 'Contentlayer で記事を markdown 管理してみる'
+title: 'Contentlayer で記事を markdown 管理する'
 emoji: '🐶'
 type: 'tech'
 topics: ['contentlayer', 'nextjs', 'typescript']
