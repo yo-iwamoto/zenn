@@ -27,7 +27,7 @@ https://github.com/you-5805/vanilla-vercel-functions
 
 https://vercel.com/docs/concepts/functions/serverless-functions
 
-root に `api` ディレクトリ内に、以下のようにハンドラを default export するファイルを置くと、Serverless Functions として動作します。
+root に `api` ディレクトリを作成し、以下のようにハンドラを default export するファイルを置くと、Serverless Functions として動作します。
 
 デモ: https://vanilla-vercel-functions.vercel.app/api/hello
 
