@@ -124,6 +124,8 @@ app.use('/api/express', router);
 export default app;
 ```
 
+（本当は [Hono](https://hono.dev) を使いたかったんですが、うまく動かせませんでした。分かる方いたら教えてください。）
+
 :::message
 素の Serverless Functions では、Next.js のように複数のダイナミックパスパラメータを受けとる関数は作成できないようなので、代わりに特定のパス以下のリクエストを全て express に流すために `vercel.json` で `rewrites` の設定が必要です。
 （`/api/express/index.ts` にファイルを置いた場合、以下）
