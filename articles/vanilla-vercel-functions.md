@@ -144,6 +144,14 @@ export default app;
 参考: https://vercel.com/guides/using-express-with-vercel#standalone-express
 :::
 
+## Static Files
+
+Vercel ならデフォルトで Static File Serving が有効なので、`public` ディレクトリに置くだけで雑に配信できます。
+
+Web サイトが必要なわけではなくても、画像などちょっとしたファイルを配信したいことは多いと思うので、ついでに活用しましょう。
+
+デモ: https://vanilla-vercel-functions.vercel.app/author.jpg
+
 # まとめ
 
 これでもう、API をデプロイしたいだけなのに `npm i next` や `npm i react` をして不思議な気持ちにならずにすみますね。
