@@ -32,6 +32,8 @@ root に `api` ディレクトリ内に、以下のようにハンドラを defa
 デモ: https://vanilla-vercel-functions.vercel.app/api/hello
 
 ```ts:api/hello.ts
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+
 export default function handler(req: VercelRequest, res: VercelResponse) {
   res.status(200).json({
     message: 'Hello world',
@@ -47,7 +49,7 @@ https://vercel.com/docs/concepts/functions/edge-functions
 以下のような `config` オブジェクトを `export` すると、Edge Functions として動作させることができます。
 
 Edge Functions のランタイムは軽量で、Node.js ではないので様々な制約を受けますが、その分パフォーマンスや物理的距離によるレイテンシの低さで様々な使い所があります。
-また、以下のように [@vercel/edge](https://www.npmjs.com/package/@vercel/edge) という npm パッケージとして、リクエストの地理情報・IP アドレスの取得等は簡単に行うことができます。
+また、[@vercel/edge](https://www.npmjs.com/package/@vercel/edge) という npm パッケージが公開されていて、リクエストの地理情報・IP アドレスの取得等は簡単に行うことができます。
 
 デモ: https://vanilla-vercel-functions.vercel.app/api/edge
 
@@ -124,7 +126,7 @@ app.use('/api/express', router);
 export default app;
 ```
 
-（本当は [Hono](https://hono.dev) を使いたかったんですが、うまく動かせませんでした。分かる方いたら教えてください。）
+本当は [Hono](https://hono.dev) を使いたかったんですが、うまく動かせませんでした。分かる方いたら教えてください。
 
 :::message
 素の Serverless Functions では、Next.js のように複数のダイナミックパスパラメータを受けとる関数は作成できないようなので、代わりに特定のパス以下のリクエストを全て express に流すために `vercel.json` で `rewrites` の設定が必要です。
