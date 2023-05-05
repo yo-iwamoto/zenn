@@ -124,8 +124,6 @@ app.use('/api/express', router);
 export default app;
 ```
 
-（本当は [Hono](https://hono.dev) を使いたかったんですが、うまく動かせませんでした。分かる方いたら教えてください。）
-
 :::message
 素の Serverless Functions では、Next.js のように複数のダイナミックパスパラメータを受けとる関数は作成できないようなので、代わりに特定のパス以下のリクエストを全て express に流すために `vercel.json` で `rewrites` の設定が必要です。
 （`/api/express/index.ts` にファイルを置いた場合、以下）
@@ -143,6 +141,20 @@ export default app;
 
 参考: https://vercel.com/guides/using-express-with-vercel#standalone-express
 :::
+
+~~（本当は [Hono](https://hono.dev) を使いたかったんですが、うまく動かせませんでした。分かる方いたら教えてください。）~~
+
+## 🔥 Hono も使えた（追記 - 2023.05.05）
+
+hono/nextjs で Serverless Functions でも動かせるようでした。（バージョンか書き方のミスだったかもしれません）
+hono だと組み込みの BASIC 認証ミドルウェアで、簡単に認証がかけられたりもしていて圧倒的に便利ですね。
+
+デモ: https://vanilla-vercel-functions.vercel.app/api/hono/auth
+ID: `vercel` / PW: `hono`
+
+ご対応ありがとうございます！
+
+https://github.com/you-5805/vanilla-vercel-functions/pull/2
 
 ## Static Files
 
