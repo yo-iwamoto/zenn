@@ -154,6 +154,31 @@ hono だと組み込みの BASIC 認証ミドルウェアで、簡単に認証�
 デモ: https://vanilla-vercel-functions.vercel.app/api/hono/auth
 ID: `vercel` / PW: `hono`
 
+```ts:api/hono/index.ts
+import { Hono } from 'hono'
+import { basicAuth } from 'hono/basic-auth'
+import { handle } from 'hono/nextjs'
+
+export const config = {
+  runtime: 'edge',
+}
+
+const app = new Hono().basePath('/api/hono')
+
+app.get(
+  '/auth',
+  basicAuth({
+    username: 'vercel',
+    password: 'hono',
+  }),
+  (c) => {
+    return c.text('Authorized!')
+  }
+)
+
+export default handle(app)
+```
+
 ご対応ありがとうございます！
 
 https://github.com/you-5805/vanilla-vercel-functions/pull/2
