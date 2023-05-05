@@ -27,11 +27,13 @@ https://github.com/you-5805/vanilla-vercel-functions
 
 https://vercel.com/docs/concepts/functions/serverless-functions
 
-root に `api` ディレクトリ内に、以下のようにハンドラを default export するファイルを置くと、Serverless Functions として動作します。
+root に `api` ディレクトリを作成し、以下のようにハンドラを default export するファイルを置くと、Serverless Functions として動作します。
 
 デモ: https://vanilla-vercel-functions.vercel.app/api/hello
 
 ```ts:api/hello.ts
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+
 export default function handler(req: VercelRequest, res: VercelResponse) {
   res.status(200).json({
     message: 'Hello world',
@@ -47,7 +49,7 @@ https://vercel.com/docs/concepts/functions/edge-functions
 以下のような `config` オブジェクトを `export` すると、Edge Functions として動作させることができます。
 
 Edge Functions のランタイムは軽量で、Node.js ではないので様々な制約を受けますが、その分パフォーマンスや物理的距離によるレイテンシの低さで様々な使い所があります。
-また、以下のように [@vercel/edge](https://www.npmjs.com/package/@vercel/edge) という npm パッケージとして、リクエストの地理情報・IP アドレスの取得等は簡単に行うことができます。
+また、[@vercel/edge](https://www.npmjs.com/package/@vercel/edge) という npm パッケージが公開されていて、リクエストの地理情報・IP アドレスの取得等は簡単に行うことができます。
 
 デモ: https://vanilla-vercel-functions.vercel.app/api/edge
 
