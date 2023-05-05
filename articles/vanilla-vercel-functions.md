@@ -148,8 +148,9 @@ export default app;
 
 ## 🔥 Hono も使えた（追記 - 2023.05.05）
 
-hono/nextjs で Serverless Functions でも動かせるようでした。（バージョンか書き方のミスだったかもしれません）
+hono/nextjs で動かせるようでした！（動かなかったのはバージョンか書き方のミスだったかもしれません。）
 hono だと組み込みの BASIC 認証ミドルウェアで、簡単に認証がかけられたりもしていて圧倒的に便利ですね。
+また、エッジで動くようです。
 
 デモ: https://vanilla-vercel-functions.vercel.app/api/hono/auth
 ID: `vercel` / PW: `hono`
