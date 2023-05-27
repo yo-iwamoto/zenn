@@ -79,7 +79,8 @@ https://vercel.com/docs/storage/vercel-kv
 
 以下は来訪者カウンター実装の例です。
 
-デモ: https://vanilla-vercel-functions.vercel.app/api/kv
+~~デモ: https://vanilla-vercel-functions.vercel.app/api/kv~~
+こちらのデモは現在動作しません。
 
 ```ts:api/kv.ts
 import type { RequestContext } from '@vercel/edge';
