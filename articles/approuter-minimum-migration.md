@@ -96,7 +96,7 @@ export default function Page({ post }: InferGetServerSidePropsType<typeof getSer
 ```
 
 App Router では、厳密に言うと Next.js にキャッシュを握らせずに Cache-Control でクライアントまたは CDN 側でキャッシュをさせるこの振る舞いを実現する方法はありません。
-このユースケースに対して、revalidate ありの getStaticProps で実現していたいわゆる ISR のようなものが `fetch` レベルで可能になっています。[4. revalidate を指定した getStaticProps](#4.%20revalidate%20%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%9F%20getStaticProps) を参照してください。
+このユースケースに対して、revalidate ありの getStaticProps で実現していたいわゆる ISR のようなものが `fetch` レベルで可能になっています。[4. revalidate を指定した getStaticProps](#4.-revalidate-を指定した-getstaticprops) を参照してください。
 
 一応、特定のパスに対して常に一定のレスポンスヘッダを指定したいだけであれば、以下で動き**そうですが**、実際には middleware で指定した Cache-Control は Next.js により上書きされてしまいます。要件によって Surrogate-Control 等が使える可能性があるので検討するのが良さそうです。
 https://github.com/vercel/next.js/issues/48480
