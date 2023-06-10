@@ -3,7 +3,7 @@ title: '最小限の gssp → App Router 移行'
 emoji: '🦥'
 type: 'tech'
 topics: ['nextjs', 'approuter']
-published: false
+published: true
 ---
 
 # はじめに
@@ -13,6 +13,8 @@ published: false
   https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration
 
 - コード例は簡潔さのため詳細が省略されていることがあります。
+
+- 誤った記述があれば [@yoiwamoto](https://twitter.com/yoiwamoto) に教えてください！
 
 - 個人的には本編は最後の App Router との格闘で、前半はただの現状整理です。
 
@@ -26,7 +28,8 @@ Next.js の App Router が Stable になっていますが、コンポーネン�
 
 仮に設計を更新することには肯定的だったとしても、膨大な影響範囲を鑑みると、App Router への移行とは分けて取り組みたいと考えられます。
 
-この記事では、App Router に移行した際のサーバー側でのデータ取得処理の変更について、トップレベルから props を流し込むというメンタルモデルを崩さない範囲での、現実解的な移行例を挙げます。おそらく一般解でもありそうという認識です。
+この記事では、App Router に移行した際のサーバー側でのデータ取得処理の変更について、トップレベルから props を流し込むというアプリケーション構造を崩さない範囲での、現実解的な移行例を挙げます。おそらく一般解でもありそうという認識です。
+
 それと、SWR や TanStack Query で fallback を流し込む構成も一般的だと思うのでそれについても触れます。
 
 # 1. 普通の getServerSideProps
