@@ -1,5 +1,5 @@
 ---
-title: '最小限の gssp → App Router 移行'
+title: '最小限の gssp → App Router 移行パターン集'
 emoji: '🦥'
 type: 'tech'
 topics: ['nextjs', 'approuter']
