@@ -25,7 +25,7 @@ https://vitest.dev/guide/workspace.html
 デモリポジトリです。
 https://github.com/you-5805/vitest-workspace
 
-`vitest.config.ts` の代わりに `vitest.workspace.ts` を作成し、例えば以下のように設定すると、`*.browser.test.tsx` のような形式のテストファイルでは `jsdom` が、`*.node.test.tsx` のような形式のテストファイルでは `node` が実行環境として使われるようになります。
+`vitest.config.ts` の代わりに `vitest.workspace.ts` を作成し、例えば以下のように設定すると、`*.node.test.tsx` では `node` が実行環境として使われるようになります。
 
 ```ts:vitest.workspace.ts
 import { defineConfig, defineWorkspace, mergeConfig } from 'vitest/config';
@@ -40,9 +40,9 @@ const sharedConfig = defineConfig({
 const browserConfig = defineConfig({
   plugins: [react()],
   test: {
-    name: 'browser',
-    environment: 'jsdom',
-    include: ['src/**/*.browser.test.{ts,tsx}'],
+    name: "browser",
+    environment: "jsdom",
+    exclude: ["src/**/*.node.test.{ts,tsx}", "node_modules"],
   },
 });
 
@@ -94,6 +94,10 @@ function getSecret() {
 # もっとカジュアルに変更できないのか？（できない）
 
 ファイル名に変更が入るのはやや面倒ですよね。
+
+:::message
+2023.12.29 12:24 に上記の設定を修正して、`jsdom` を使う方の workspace について `include` ではなく `exclude` を使用することで、`*.browser.test.tsx` というファイル名を使用しなくても、`*.node.test.tsx` というファイルだけを例外的に `node` 環境で扱う、という設定にできたので、特に面倒ではなくなりました (?)。
+:::
 
 例えばテストファイルスコープの設定と言えば `vi.setConfig()` があり、こういうので設定できると楽だったんですが、そういう設定はできません。まあ実行環境なので、実行時に読み取られる個別の設定よりはもっと前段で分岐が必要そうです。
 
