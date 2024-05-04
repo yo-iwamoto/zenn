@@ -3,7 +3,7 @@ title: 'RSC での preload パターンの使い所'
 emoji: '🐠'
 type: 'tech'
 topics: ['react', 'nextjs', 'approuter']
-published: false
+published: true
 ---
 
 ## preload パターンについて
