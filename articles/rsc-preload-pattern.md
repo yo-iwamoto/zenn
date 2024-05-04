@@ -124,6 +124,11 @@ _devtool > Network > Timing_
 ![Chrome devtool 内の Network での Timing データ。Waiting for server response が 43.41ms で、Content Download が 994.09ms。](/images/rsc-preload-pattern/streaming.png =300x)
 _devtool > Network > Timing_
 
-## デメリット
+## preload パターンのデメリット
 
 - 今回のように、先に行う処理の結果によってはデータ取得が不要になることもあるようなケースでは、単純に、不必要なリクエストが発生することになります。
+
+## References
+
+サンプルコード置き場
+https://github.com/yo-iwamoto/sample-code-rsc-preload-pattern/tree/main/src/app
