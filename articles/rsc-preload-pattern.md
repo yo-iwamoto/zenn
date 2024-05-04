@@ -37,7 +37,7 @@ export default function Page() {
 ```
 
 上記の route では、`https://api.example.com/api/billing-plan` から取得した課金プラン情報を表示しますが、この billingPlan のリクエストは、`getIsAuthenticated()` やその下の処理が実行された後に行われます。
-`getIsAuthenticated()` は一瞬で完了することを期待するものであればこれでよいかもしれませんが、これが例えばネットワークを介するものであったり、その他非同期の重い計算を伴うような処理であったりすれば、2 つの処理が直列で実行されることはこの route のレスポンス速度に悪影響を及ぼします。
+`getIsAuthenticated()` が一瞬で完了することを期待するような関数であればこれでよいかもしれませんが、これが例えばネットワークを介するものであったり、その他非同期の重い計算を伴うような処理であったりすれば、2 つの処理が直列で実行されることはこの route のレスポンス速度に悪影響を及ぼします。
 
 具体的には、試しにこのサンプルコードで `getIsAuthenticated()` と billingPlan を取得する処理にそれぞれ 1000ms のスリープを入れると、レスポンスの完了に 2s 以上がかかることが確かめられます。
 
@@ -51,7 +51,7 @@ _devtool > Network > Timing_
 これが可能である理由は、現在の Next.js / React では、同一 URL への fetch は暗黙的に メモ化（route リクエストに対してそれぞれ 1 回しか発生しないようにキャッシュ）されるためです。
 
 :::message
-現在の Next.js / React では、同一 URL への fetch は暗黙的に deduping（route リクエストに対してそれぞれ 1 回しか発生しないようにキャッシュ）されますが、ここでは同様のことを行う react の `cache()` を敢えて明示的に使用しています。
+fetch のメモ化は現在暗黙的に行われますが、ここでは同様のことを行う react の `cache()` を敢えて明示的に使用しています。
 理由としては、React は次バージョンの v19 で、これを実現するために行っていた fetch のパッチを切る予定^[[Remove automatic fetch cache instrumentation - facebook/react](https://github.com/facebook/react/pull/28896)]で、Next.js がこの役割を引き継ぐかはまだ分かっていないためです。
 :::
 
@@ -118,9 +118,9 @@ _devtool > Network > Timing_
 ## 補足
 
 言わずもがなですが、上記のコードで生じるどの suspend も Page に伝播されるので、示した Timing のようにレスポンス時間に影響を与えます。
-そのため、実際には上記のような書き方ではなく、都度 `<Suspense>` や、Next.js App Router であれば `loading.tsx` を利用するなどしてストリーミングレスポンスを行うことが望ましいと思います。
+そのため、実際には上記のような書き方ではなく、都度 `<Suspense>` を引いたり、Next.js App Router であれば `loading.tsx` を利用するなどして、ストリーミングレスポンスを行うのが望ましいと思います。
 
-例えば今回の例で言うと、`loading.tsx` をとりあえず置いておくだけで以下のようなストリーミングレスポンスになり、この時間にローディング UI を表示することができます。
+例えば今回の例で言うと、`loading.tsx` をとりあえず置いておくだけで以下のようなストリーミングレスポンスになり、この Content Download の時間にローディング UI を表示することができます。
 ![Chrome devtool 内の Network での Timing データ。Waiting for server response が 43.41ms で、Content Download が 994.09ms。](/images/rsc-preload-pattern/streaming.png =300x)
 _devtool > Network > Timing_
 
