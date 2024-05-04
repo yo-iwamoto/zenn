@@ -102,7 +102,7 @@ export default function Page() {
     redirect('/login');
   }
 
-  return <h1>{billingPlan.displayName}</h1>;
+  return <BillingPlan billingPlanPromise={billingPlanPromise} />;
 }
 
 function BillingPlan({ billingPlanPromise }: { billingPlanPromise: Promise<BillingPlan> }) {
