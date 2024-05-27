@@ -63,11 +63,11 @@ it('データが取得中の時、ローディング UI が表示されること
 import { render } from '@testing-library/react';
 import { UserProfile } from './user-profile';
 
-const { useUserQuery } = vi.hoisted(() => ({
-  useUserQuery: vi.fn(() => ({
+const useUserQuery = vi.hoisted(() =>
+  vi.fn(() => ({
     data: { name: 'John Doe' },
   })),
-}));
+)
 vi.mock('./use-user-query', () => ({
   useUserQuery,
 }));
@@ -135,9 +135,7 @@ Error: [vitest] There was an error when mocking a module. If you are using "vi.m
 ```ts:__tests__/utils.ts
 export function mockUseUserQuery() {
   const { useUserQuery } = vi.hoisted(() => ({
-    useUserQuery: vi.fn(() => ({
-      data: { name: 'John Doe' },
-    })),
+    useUserQuery: ,
   }));
   vi.mock('./use-user-query', () => ({
     useUserQuery,
