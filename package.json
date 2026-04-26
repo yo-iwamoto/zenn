@@ -6,7 +6,7 @@
     "dev": "zenn preview"
   },
   "dependencies": {
-    "zenn-cli": "^0.1.158"
+    "zenn-cli": "^0.4.7"
   },
   "packageManager": "pnpm@9.15.4"
 }
